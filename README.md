@@ -6,7 +6,7 @@ This is a basic application for a test on [Eduzz.com](https://eduzz.com/ "Eduzz"
 
 The api for this test, was build with the lumen microframework.
 
-### CookBook
+### Api - CookBook
 
 Enter in /api folder
 
@@ -30,7 +30,7 @@ And finally, use the php to run a basic server inside of /api
 php -S localhost:8000 -t public
 ```
 
-### Routes
+### Api - Routes
 
 | METHOD        | ROUTE           | RETURN  |
 | ------------- |:-------------:| -----:|
