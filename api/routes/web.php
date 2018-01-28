@@ -17,6 +17,11 @@ $router->get('/candidate', [
 ]);
 
 $router->get('/candidate/{id}', [
-	'as' => 'candidate',
+	'as' => 'candidate.find',
 	'uses' => 'CandidateController@load'
+]);
+
+$router->post('/candidate', [
+	'as' => 'candidate.create',
+	'uses' => 'CandidateController@create'
 ]);
