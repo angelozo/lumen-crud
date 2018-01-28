@@ -37,6 +37,7 @@ php -S localhost:8000 -t public
 | GET      | /candidate | List of all candidates |
 | GET      | /candidate/:id | Show the specific candidate |
 | POST      | /candidate | Create a new candidate |
+| DELETE      | /candidate/:id | Delete a candidate |
 
 ## Interface
 

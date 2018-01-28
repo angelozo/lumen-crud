@@ -43,6 +43,23 @@ class CandidateController extends Controller {
 			->withHeaders([
 				'Content-Type' => 'application/json',
 				'Location' => route('candidate.find', ['id' => $candidate->id])
-			]);;
+			]);
+	}
+
+	public function delete(Request $request, $id) {
+		$candidate = Candidate::find($id);
+
+		if(!$candidate) {
+			return response(null, 404);
+		}
+
+		$candidate->delete();
+
+		return response(null, 200)
+			->json($candidate)
+			->withHeaders([
+				'Content-Type' => 'application/json',
+				'Location' => route('candidate.find', ['id' => $candidate->id])
+			]);
 	}
 }

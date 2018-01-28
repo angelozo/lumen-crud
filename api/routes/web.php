@@ -25,3 +25,8 @@ $router->post('/candidate', [
 	'as' => 'candidate.create',
 	'uses' => 'CandidateController@create'
 ]);
+
+$router->delete('/candidate/{id}', [
+	'as' => 'candidate.delete',
+	'uses' => 'CandidateController@delete'
+]);
