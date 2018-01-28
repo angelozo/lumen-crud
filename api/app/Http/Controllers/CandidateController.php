@@ -58,8 +58,29 @@ class CandidateController extends Controller {
 		return response(null, 200)
 			->json($candidate)
 			->withHeaders([
-				'Content-Type' => 'application/json',
-				'Location' => route('candidate.find', ['id' => $candidate->id])
+				'Content-Type' => 'application/json'
+			]);
+	}
+
+	public function update(Request $request, $id) {
+		$this->validate($request, [
+			'name' => 'max:255|different:name',
+			'email' => 'email|unique:candidates|differente:email'
+		]);
+
+		$candidate = Candidate::find($id);
+
+		if(!$candidate) {
+			return response(null, 404);
+		}
+
+		$candidate->name = $request->input('name');
+		$candidate->email = $request->input('email');
+		$candidate->save();
+
+		return response(null, 200)
+			->withHeaders([
+				'Content-Type' => 'application/json'
 			]);
 	}
 }

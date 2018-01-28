@@ -30,3 +30,14 @@ $router->delete('/candidate/{id}', [
 	'as' => 'candidate.delete',
 	'uses' => 'CandidateController@delete'
 ]);
+
+$router->patch('/candidate/{id}', [
+	'as' => 'candidate.update',
+	'uses' => 'CandidateController@update'
+]);
+
+$router->put('/candidate/{id}', [
+	'as' => 'candidate.update',
+	'uses' => 'CandidateController@update'
+]);
+

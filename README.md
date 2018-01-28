@@ -6,7 +6,7 @@ This is a basic application for a test on [Eduzz.com](https://eduzz.com/ "Eduzz"
 
 The api for this test, was build with the lumen microframework.
 
-### Api - CookBook
+### Api - Installation
 
 Enter in /api folder
 
@@ -35,10 +35,11 @@ php -S localhost:8000 -t public
 | METHOD        | ROUTE           | RETURN  |
 | ------------- |:-------------:| -----:|
 | GET      | /candidate | List of all candidates |
-| GET      | /candidate/:id | Show the specific candidate |
+| GET      | /candidate/:id | Show the candidate |
 | POST      | /candidate | Create a new candidate |
-| DELETE      | /candidate/:id | Delete a candidate |
+| DELETE      | /candidate/:id | Delete the candidate |
+| PATCH/PUT      | /candidate/:id | Update the candidate |
 
 ## Interface
 
-The interface is build with basic's of Html, Css, Vanilla Javascript and Gulp to create a basic server.
+The interface is built with basic's of Html, Css, Vanilla Javascript and Gulp to create a basic server.
