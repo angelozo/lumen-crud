@@ -11,6 +11,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+$router->get('/candidate', [
+	'as' => 'candidate',
+	'uses' => 'CandidateController@index'
+]);
+
+$router->get('/candidate/{id}', [
+	'as' => 'candidate',
+	'uses' => 'CandidateController@load'
+]);
