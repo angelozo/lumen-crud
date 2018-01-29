@@ -40,4 +40,3 @@ $router->put('/candidate/{id}', [
 	'as' => 'candidate.update',
 	'uses' => 'CandidateController@update'
 ]);
-
