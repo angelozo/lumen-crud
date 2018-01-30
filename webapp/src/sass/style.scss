@@ -1,20 +1,15 @@
 #candidate_list {
-	li {
-		list-style: none;
+	.btn-danger {
+		margin-left: 5px;
+	}
+
+	.btn-info {
+		margin-left: 5px;
+	}
+}
+
+.form-create-new {
+	input {
 		margin-bottom: 10px;
-
-		a {
-			margin-left: 5px;
-			font-weight: bold;
-			text-transform: lowercase;
-			color: #C00;
-			cursor: pointer;
-		}
-
-		label {
-			border: 1px solid #AAA;
-			display: inline-block;
-			padding: 10px;
-		}
 	}
 }

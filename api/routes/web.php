@@ -32,13 +32,16 @@ $router->group(['middleware' => 'cors'], function() use ($router) {
 		'uses' => 'CandidateController@delete'
 	]);
 
-	$router->patch('/candidate/{id}', [
-		'as' => 'candidate.update',
-		'uses' => 'CandidateController@update'
-	]);
-
 	$router->put('/candidate/{id}', [
 		'as' => 'candidate.update',
 		'uses' => 'CandidateController@update'
 	]);
+
+	$router->options('/candidate/{id}', function() {
+		return response();
+	});
+
+	$router->options('/candidate', function() {
+		return response();
+	});
 });

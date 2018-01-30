@@ -10,6 +10,8 @@ class CorsMiddleware {
 	protected $settings = [
 		'origin' => '*',
 		'allowMethods' => 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+        'allowHeaders' => 'Content-Type',
+        'maxAge' => 1000
 	];
 
 	protected function setOrigin($request, $response) {
@@ -27,7 +29,7 @@ class CorsMiddleware {
         if (isset($this->settings['exposeHeaders'])) {
             $exposeHeaders = $this->settings['exposeHeaders'];
             if (is_array($exposeHeaders)) {
-                $exposeHeaders = implode(", ", $exposeHeaders);
+                $exposeHeaders = implode(",", $exposeHeaders);
             }
 
             $response->header('Access-Control-Expose-Headers', $exposeHeaders);
@@ -50,7 +52,7 @@ class CorsMiddleware {
         if (isset($this->settings['allowMethods'])) {
             $allowMethods = $this->settings['allowMethods'];
             if (is_array($allowMethods)) {
-                $allowMethods = implode(", ", $allowMethods);
+                $allowMethods = implode(",", $allowMethods);
             }
 
             $response->header('Access-Control-Allow-Methods', $allowMethods);
@@ -61,7 +63,7 @@ class CorsMiddleware {
         if (isset($this->settings['allowHeaders'])) {
             $allowHeaders = $this->settings['allowHeaders'];
             if (is_array($allowHeaders)) {
-                $allowHeaders = implode(", ", $allowHeaders);
+                $allowHeaders = implode(",", $allowHeaders);
             }
         }
         else {  // Otherwise, use request headers
@@ -74,7 +76,7 @@ class CorsMiddleware {
     }
 
     protected function setCorsHeaders($request, $response) {
-        if ($request->isMethod('OPTIONS')) {
+        if ($request->method() == 'OPTIONS') {
             $this->setOrigin($request, $response);
             $this->setMaxAge($request, $response);
             $this->setAllowCredentials($request, $response);
@@ -96,14 +98,13 @@ class CorsMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next) {
-        if ($request->isMethod('OPTIONS')) {
+        if ($request->method() == 'OPTIONS') {
             $response = new Response("", 200);
         } else {
             $response = $next($request);
         }
 
         $this->setCorsHeaders($request, $response);
-
         return $response;
     }
 

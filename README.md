@@ -43,3 +43,17 @@ php -S localhost:8000 -t public
 ## Interface
 
 The interface is built with basic's of Html, Css, Vanilla Javascript and Gulp to create a basic server.
+
+### Interface - Installation
+
+Enter in webapp folder and install the dependencies
+
+```sh
+sudo npm install --unsafe-perm
+```
+
+Run the test "server"
+
+```sh
+gulp browser-sync
+```

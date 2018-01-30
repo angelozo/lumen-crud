@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Candidate as Candidate;
 
-class CandidateController extends Controller {
+class CandidateController extends  Controller {
 
 	public function index(Request $request) {
 		$candidates = Candidate::all();
@@ -56,7 +56,6 @@ class CandidateController extends Controller {
 		$candidate->delete();
 
 		return response(null, 200)
-			->json($candidate)
 			->withHeaders([
 				'Content-Type' => 'application/json'
 			]);
@@ -64,8 +63,7 @@ class CandidateController extends Controller {
 
 	public function update(Request $request, $id) {
 		$this->validate($request, [
-			'name' => 'max:255|different:name',
-			'email' => 'email|unique:candidates|differente:email'
+			'name' => 'max:255'
 		]);
 
 		$candidate = Candidate::find($id);
@@ -74,13 +72,16 @@ class CandidateController extends Controller {
 			return response(null, 404);
 		}
 
+		if($candidate->email != $request->input('email')) {
+			$this->validate($request, [
+				'email' => 'email|unique:candidates'
+			]);
+		}
+
 		$candidate->name = $request->input('name');
 		$candidate->email = $request->input('email');
 		$candidate->save();
 
-		return response(null, 200)
-			->withHeaders([
-				'Content-Type' => 'application/json'
-			]);
+		return response(null, 200);
 	}
 }
