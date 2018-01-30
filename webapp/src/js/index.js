@@ -1,14 +1,12 @@
 function CandidateManager() {
-	this.list =  function() {
+	this.list =  function(callback) {
 		var ajax = $.ajax({
-			url: 'localhost:8000/candidate',
+			url: 'http://localhost:8000/candidate',
 			dataType: 'JSON',
 			method: 'GET'
 		});
 
-		ajax.done(function(data) {
-
-		});
+		ajax.done(callback);
 	};
 
 	this.create = function(params) {
@@ -28,11 +26,13 @@ function DomManipulator() {
 	this.candidateManager = new CandidateManager();
 
 	this.updateList = function() {
-		this.candidateManager.list(function() {
+		this.candidateManager.list(function(data) {
+			console.log(data);
+
 			var $list = $('#candidate_list ul');
 			$list.innerHTML = '';
 
-			candidates.forEach(function(candidate, index, array) {
+			data.forEach(function(candidate, index, array) {
 				var $item = document.createElement('li');
 
 				var $information = document.createElement('label');

@@ -11,32 +11,34 @@
 |
 */
 
-$router->get('/candidate', [
-	'as' => 'candidate',
-	'uses' => 'CandidateController@index'
-]);
+$router->group(['middleware' => 'cors'], function() use ($router) {
+	$router->get('/candidate', [
+		'as' => 'candidate',
+		'uses' => 'CandidateController@index'
+	]);
 
-$router->get('/candidate/{id}', [
-	'as' => 'candidate.find',
-	'uses' => 'CandidateController@load'
-]);
+	$router->get('/candidate/{id}', [
+		'as' => 'candidate.find',
+		'uses' => 'CandidateController@load'
+	]);
 
-$router->post('/candidate', [
-	'as' => 'candidate.create',
-	'uses' => 'CandidateController@create'
-]);
+	$router->post('/candidate', [
+		'as' => 'candidate.create',
+		'uses' => 'CandidateController@create'
+	]);
 
-$router->delete('/candidate/{id}', [
-	'as' => 'candidate.delete',
-	'uses' => 'CandidateController@delete'
-]);
+	$router->delete('/candidate/{id}', [
+		'as' => 'candidate.delete',
+		'uses' => 'CandidateController@delete'
+	]);
 
-$router->patch('/candidate/{id}', [
-	'as' => 'candidate.update',
-	'uses' => 'CandidateController@update'
-]);
+	$router->patch('/candidate/{id}', [
+		'as' => 'candidate.update',
+		'uses' => 'CandidateController@update'
+	]);
 
-$router->put('/candidate/{id}', [
-	'as' => 'candidate.update',
-	'uses' => 'CandidateController@update'
-]);
+	$router->put('/candidate/{id}', [
+		'as' => 'candidate.update',
+		'uses' => 'CandidateController@update'
+	]);
+});
